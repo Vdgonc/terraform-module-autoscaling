@@ -1,5 +1,5 @@
-provisioner "aws" {
-    local.region
+provider "aws" {
+    region = local.region
 }
 
 data "aws_vpc" "vpc" {
