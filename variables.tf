@@ -29,3 +29,21 @@ variable "name" {
     type = string
     description = "Application name"
 }
+
+variable "min_size" {
+    type = number
+    description = "Min size of instances on Auto Scaling Group"
+    default = 1
+}
+
+variable "max_size" {
+    type = number
+    description = "Max size of instances on Auto Scaling Group"
+    default = 1
+}
+
+variable "desired_capacity" {
+    type = number
+    description = "Desired capacity of instances on Auto Scaling Group"
+    default = 1
+}
