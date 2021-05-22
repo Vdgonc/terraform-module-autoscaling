@@ -9,7 +9,7 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_security_group_rule" "eg_rules" {
-    type = "ingress"
+    type = "egress"
     security_group_id = aws_security_group.sg.id
 
     for_each = { for index, rules in  var.egress_rules : index => rules }
