@@ -29,7 +29,7 @@ resource "aws_launch_template" "lt" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-    name_prefix = join("-", [var.name, "asg-"])
+    name = join("-", [var.name, "asg-", local.date_alt])
     desired_capacity = var.desired_capacity
     min_size = var.min_size
     max_size = var.max_size
