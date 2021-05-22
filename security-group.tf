@@ -17,6 +17,7 @@ resource "aws_security_group_rule" "eg_rules" {
     to_port = each.value.to_port
     protocol = each.value.protocol
     cidr_blocks = each.value.cidr_blocks
+    description = each.value.description
 }
 
 resource "aws_security_group_rule" "ig_rules" {
@@ -28,4 +29,15 @@ resource "aws_security_group_rule" "ig_rules" {
     to_port = each.value.to_port
     protocol = each.value.protocol
     cidr_blocks = each.value.cidr_blocks
+    description = each.value.description
+}
+
+output "sg_id" {
+    description = "Security Group Id"
+    value = aws_security_group.sg.id
+}
+
+output "sg_name" {
+    description = "Security Group Name"
+    value = aws_security_group.sg.name
 }
