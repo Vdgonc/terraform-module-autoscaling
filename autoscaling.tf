@@ -17,15 +17,18 @@ resource "aws_launch_template" "lt" {
         enabled = true
     }    
 
-    tags = {
-        Name = var.name
+    tag_specifications {
+        resource_type = "instance"
+        tags = {
+            Name = var.name
+        }
     }
 
     user_data = var.use_user_data ? filebase64(var.user_data_path) : null
 }
 
 resource "aws_autoscaling_group" "asg" {
-    name_prefix = join("-", [var.name, "asg"])
+    name_prefix = join("-", [var.name, "asg-"])
     desired_capacity = var.desired_capacity
     min_size = var.min_size
     max_size = var.max_size
