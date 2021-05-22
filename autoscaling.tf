@@ -44,3 +44,19 @@ resource "aws_autoscaling_group" "asg" {
 
     termination_policies = [ "OldestInstance", "OldestLaunchTemplate" ]
 }
+
+
+output "launch_template_id" {
+    description = "Lauch Template Id"
+    value = aws_launch_template.lt.id
+}
+
+output "asg_name" {
+    description = "AutoScaling Group Name"
+    value = aws_autoscaling_group.asg.name
+}
+
+output "asg_arn" {
+    description = "AutoScaling Group ARN"
+    value = aws_autoscaling_group.asg.arn
+}
