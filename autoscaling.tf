@@ -22,6 +22,7 @@ resource "aws_launch_template" "lt" {
         resource_type = "instance"
         tags = {
             Name = var.name
+            Environment = terraform.workspace
         }
     }
 
@@ -44,6 +45,12 @@ resource "aws_autoscaling_group" "asg" {
     enabled_metrics = ["GroupInServiceCapacity", "GroupPendingCapacity","GroupTotalInstances"]
 
     termination_policies = [ "OldestInstance", "OldestLaunchTemplate" ]
+    
+    tag {
+        key = "Environment"
+        value = terraform.workspace
+        propagate_at_launch = false
+    }
 }
 
 

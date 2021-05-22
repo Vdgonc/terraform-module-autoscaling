@@ -5,6 +5,7 @@ resource "aws_security_group" "sg" {
 
     tags = {
         Name = join("_", [var.name, "sg"])
+        Environment = terraform.workspace
     }
 }
 
