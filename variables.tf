@@ -47,3 +47,47 @@ variable "desired_capacity" {
     description = "Desired capacity of instances on Auto Scaling Group"
     default = 1
 }
+
+variable "ingress_rules" {
+    type = list(object(
+        {
+            description = string
+            from_port = number
+            to_port = number
+            protocol = string
+            cidr_blocks = list(string)
+        }
+    ))
+    description = "Security group ingress rules"
+    default = [
+        {
+            description = "SSH Access"
+            from_port = 22
+            to_port = 22
+            protocol = "tcp"
+            cidr_blocks = ["172.32.0.0/16"]
+        }
+    ]
+}
+
+variable "egress_rules" {
+    type = list(object(
+        {
+            description = string
+            from_port = number
+            to_port = number
+            protocol = string
+            cidr_blocks = list(string)
+        }
+    ))
+    description = "Security group ingress rules"
+    default = [
+        {
+            description = "Allow all trafic for egress"
+            from_port = 0
+            to_port = 0
+            protocol = "-1"
+            cidr_blocks = ["0.0.0.0/0"]
+        }
+    ]
+}

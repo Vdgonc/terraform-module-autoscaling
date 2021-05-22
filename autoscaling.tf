@@ -2,6 +2,7 @@ resource "aws_launch_template" "lt" {
     name = var.name
     image_id = data.aws_ami.ubuntu.id
     instance_type = var.instance_type
+    vpc_security_group_ids = [ aws_security_group.sg.id ]
 
     block_device_mappings {
         device_name = "/dev/sda1"
