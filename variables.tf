@@ -65,7 +65,7 @@ variable "ingress_rules" {
             from_port = 22
             to_port = 22
             protocol = "tcp"
-            cidr_blocks = ["172.32.0.0/16"]
+            cidr_blocks = ["172.31.0.0/16"]
         }
     ]
 }
@@ -90,4 +90,14 @@ variable "egress_rules" {
             cidr_blocks = ["0.0.0.0/0"]
         }
     ]
+}
+
+variable "use_email_notification" {
+    type = bool
+    description = "Enable email notification"
+    default = true
+}
+variable "sns_email" {
+    type = string
+    description = "SNS email subscription"
 }
