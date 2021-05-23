@@ -101,3 +101,8 @@ variable "sns_email" {
     type = string
     description = "SNS email subscription"
 }
+
+variable "cw_config_file" {
+    type = string
+    description = "CloudWatch config file"
+}

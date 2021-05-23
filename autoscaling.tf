@@ -14,6 +14,10 @@ resource "aws_launch_template" "lt" {
 
     key_name = local.key_name
 
+    iam_instance_profile {
+        name = aws_iam_instance_profile.profile.name
+    }
+
     monitoring {
         enabled = true
     }    
