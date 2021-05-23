@@ -53,6 +53,26 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization" {
     alarm_description = "This metric monitors cpu utilization running instances"
 }
 
+resource "aws_cloudwatch_metric_alarm" "mem_utilization" {
+    alarm_name = join(": ", ["Memory utilization", aws_autoscaling_group.asg.name])
+    comparison_operator = "GreaterThanOrEqualToThreshold"
+    evaluation_periods = 1
+    metric_name = "mem_available_percent"
+    namespace = "CWAgent"
+    period = "180"
+    statistic = "Average"
+    threshold = "80"
+    actions_enabled = true
+    alarm_actions = [aws_sns_topic.topic.arn]
+    ok_actions = [aws_sns_topic.topic.arn]
+
+    dimensions = {
+        AutoScalingGroupName = aws_autoscaling_group.asg.name
+    }
+
+    alarm_description = "This metric monitors memory utilization running instances"
+}
+
 output "sns_topic" {
     description = "SNS topic display name"
     value = aws_sns_topic.topic.display_name
