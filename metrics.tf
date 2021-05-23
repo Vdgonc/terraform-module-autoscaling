@@ -52,3 +52,19 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization" {
 
     alarm_description = "This metric monitors cpu utilization running instances"
 }
+
+output "sns_topic" {
+    description = "SNS topic display name"
+    value = aws_sns_topic.topic.display_name
+}
+
+output "sns_topic_arn" {
+    description = "SNS topic ARN"
+    value = aws_sns_topic.topic.arn
+}
+
+output "sns_subscription" {
+    description = "SNS topic email subscripted"
+    sensitive = true
+    value = aws_sns_topic_subscription.email_sub
+}
