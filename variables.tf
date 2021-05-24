@@ -3,6 +3,17 @@ variable "vpc_id" {
     description = "AWS VPC Id"
 }
 
+variable "ami_owner" {
+    type = string
+    description = "Owner of ami (aws account id)"
+    default = "099720109477"
+}
+
+variable "ami_name" {
+    type = string
+    description = "AMI name"
+    default = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+}
 variable "instance_type" {
     type = string
     description = "Instance Type"
