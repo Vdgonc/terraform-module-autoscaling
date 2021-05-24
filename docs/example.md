@@ -2,7 +2,7 @@
 
 ```hcl
 module "asg" {
-    source = "https://github.com/Vdgonc/terraform-module-autoscaling.git"
+    source = "git@github.com:Vdgonc/terraform-module-autoscaling.git"
 
     
     name = "webserver"
